@@ -38,5 +38,6 @@ class Plugin {
 
 		new Assets();
 		new Patterns();
+		new SearchApi();
 	}
 }
