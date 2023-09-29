@@ -3,7 +3,6 @@
 	"version": "1.0.0",
 	"description": "Aquila features plugin packages",
 	"main": "main.js",
-	
 	"scripts": {
 		"prod": "cross-env NODE_ENV=production webpack --mode production --progress",
 		"dev": "cross-env NODE_ENV=development webpack --watch --mode development --progress",
@@ -15,7 +14,8 @@
 		"lint:fix": "eslint --fix assets/src/js/*",
 		"lint-css": "stylelint 'assets/src/sass/**/*.scss'",
 		"lint-css:fix": "npm run lint-css -- --fix",
-		"precommit": "npm run lint-css:fix && npm run lint:fix && npm run prod"
+		"precommit": "npm run lint-css:fix && npm run lint:fix && npm run prod",
+		"cypress:open": "node_modules/.bin/cypress open"
 	},
 	"keywords": [
 		"wordpress",
@@ -65,13 +65,14 @@
 		"uglifyjs-webpack-plugin": "^2.2.0",
 		"webpack": "^5.88.2",
 		"webpack-cli": "^5.1.4"
-	  },
-	  "dependencies": {
+	},
+	"dependencies": {
+		"cypress": "^13.3.0",
 		"sass": "^1.68.0",
 		"slick-carousel": "^1.8.1",
 		"terser-webpack-plugin": "^5.3.9",
 		"zustand": "^4.4.1"
-	  },
+	},
 	"browserslist": [
 		"defaults"
 	]
