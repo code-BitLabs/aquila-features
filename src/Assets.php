@@ -7,30 +7,40 @@
 
 namespace AquilaFeatures;
 
+/**
+ * Assets Class.
+ *
+ * @package aquila-features
+ */
 class Assets {
 
+	/**
+	 * Initialize the class
+	 *
+	 * @return void
+	 */
 	public function __construct() {
 		$this->init();
 	}
 
-    /**
-     * Initialize the class
-     *
-     * @return void
-     */
+	/**
+	 * Initialize the class
+	 *
+	 * @return void
+	 */
 	private function init() {
 		/**
 		 * The 'enqueue_block_assets' hook includes styles and scripts both in editor and frontend,
 		 * except when is_admin() is used to include them conditionally
 		 */
-        
-		add_action( 'enqueue_block_assets', [ $this, 'enqueue_editor_assets' ] );
+
+		add_action( 'enqueue_block_assets', array( $this, 'enqueue_editor_assets' ) );
 	}
 
 	/**
 	 * Enqueue Admin Scripts
-     * 
-     * @return void
+	 *
+	 * @return void
 	 */
 	public function enqueue_editor_assets() {
 
@@ -47,9 +57,8 @@ class Assets {
 		}
 
 		$editor_asset    = $asset_config['js/editor.js'];
-		$js_dependencies = ( ! empty( $editor_asset['dependencies'] ) ) ? $editor_asset['dependencies'] : [];
+		$js_dependencies = ( ! empty( $editor_asset['dependencies'] ) ) ? $editor_asset['dependencies'] : array();
 		$version         = ( ! empty( $editor_asset['version'] ) ) ? $editor_asset['version'] : filemtime( $asset_config_file );
-
 
 		// Theme Gutenberg blocks JS.
 		if ( is_admin() ) {
@@ -62,13 +71,11 @@ class Assets {
 			);
 		}
 
-
 		// Theme Gutenberg blocks CSS.
-		$css_dependencies = [
+		$css_dependencies = array(
 			'wp-block-library-theme',
 			'wp-block-library',
-		];
-
+		);
 
 		wp_enqueue_style(
 			'blocks-css',

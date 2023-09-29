@@ -1,2 +1,2 @@
 // Styles
-import '../sass/editor.scss';
+import '../sass/editor.scss'

@@ -1,5 +1,12 @@
 <?php
 /**
+ * Aquila Features Plugin
+ *
+ * @package aquila-features
+ * @author  Tanzim Hossain
+ *
+ * @wordpress-plugin
+ *
  * Plugin Name:       XAquila Features
  * Plugin URI:        https://github.com/code-BitLabs/aquila-features
  * Description:       Adds Gutenberg Blocks for Features
@@ -21,8 +28,8 @@ use AquilaFeatures\Plugin;
 
 if ( class_exists( 'AquilaFeatures\Plugin' ) ) {
 	$the_plugin = new Plugin();
-	
-	
+
+
 }
 
 // register_activation_hook( __FILE__, [ $the_plugin, 'activate' ] );

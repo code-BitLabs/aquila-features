@@ -1,7 +1,7 @@
 {
     "name": "tanzim/aquila-feature",
     "description": "Aquila Features WordPress Plugin",
-    "license": "GPL-3.0+",
+    "license": "GPL",
 	"version": "1.0.0",
 	"keywords": [
 		"wordpress",
@@ -12,7 +12,7 @@
 	},
 	"homepage": "https://github.com/code-BitLabs/aquila-features",
 	"require-dev": {
-		"wp-coding-standards/wpcs": "^2.3",
+		"wp-coding-standards/wpcs": "^3.0",
 		"phpcompatibility/phpcompatibility-wp": "^2.1"
 	},
 	"config": {
@@ -30,6 +30,9 @@
     "autoload": {
         "psr-4": {
             "AquilaFeatures\\": "src/"
-        }
+        },
+		"classmap": [
+			"includes/"
+		]
     }
 }
