@@ -2,20 +2,20 @@
  * Webpack configuration.
  */
 
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const cssnano = require('cssnano');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const path = require( 'path' );
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
+const OptimizeCssAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' );
+const cssnano = require( 'cssnano' ); // https://cssnano.co/
+const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
+const UglifyJsPlugin = require( 'uglifyjs-webpack-plugin' );
 const CopyPlugin = require('copy-webpack-plugin'); // https://webpack.js.org/plugins/copy-webpack-plugin/
-const DependencyExtractionWebpackPlugin = require('@wordpress/dependency-extraction-webpack-plugin');
+const DependencyExtractionWebpackPlugin = require( '@wordpress/dependency-extraction-webpack-plugin' );
 
 // JS Directory path.
-const JS_DIR = path.resolve(__dirname, 'src/js');
-const IMG_DIR = path.resolve(__dirname, 'src/img');
-// const LIB_DIR = path.resolve( __dirname, 'src/library' );
-const BUILD_DIR = path.resolve(__dirname, 'build');
+const JS_DIR = path.resolve( __dirname, 'assets/src/js' );
+const IMG_DIR = path.resolve( __dirname, 'assets/src/img' );
+// const LIB_DIR = path.resolve( __dirname, 'assets/src/library' );
+const BUILD_DIR = path.resolve( __dirname, 'assets/build' );
 
 const entry = {
 	editor: JS_DIR + '/editor.js',
@@ -29,31 +29,31 @@ const output = {
 /**
  * Note: argv.mode will return 'development' or 'production'.
  */
-const plugins = (argv) => [
-	new CleanWebpackPlugin({
-		cleanStaleWebpackAssets: ('production' === argv.mode) // Automatically remove all unused webpack assets on rebuild, when set to true in production. ( https://www.npmjs.com/package/clean-webpack-plugin#options-and-defaults-optional )
-	}),
-
-	new MiniCssExtractPlugin({
+const plugins = ( argv ) => [
+	new CleanWebpackPlugin( {
+		cleanStaleWebpackAssets: ( 'production' === argv.mode  ) // Automatically remove all unused webpack assets on rebuild, when set to true in production. ( https://www.npmjs.com/package/clean-webpack-plugin#options-and-defaults-optional )
+	} ),
+	
+	new MiniCssExtractPlugin( {
 		filename: 'css/[name].css'
-	}),
-
+	} ),
+	
 	// new CopyPlugin( {
 	// 	patterns: [
 	// 		{ from: LIB_DIR, to: BUILD_DIR + '/library' }
 	// 	]
 	// } ),
-
-	new DependencyExtractionWebpackPlugin({
+	
+	new DependencyExtractionWebpackPlugin( {
 		injectPolyfill: true,
 		combineAssets: true,
-	})
+	} )
 ];
 
 const rules = [
 	{
 		test: /\.js$/,
-		include: [JS_DIR],
+		include: [ JS_DIR ],
 		exclude: /node_modules/,
 		use: 'babel-loader'
 	},
@@ -78,7 +78,7 @@ const rules = [
 	},
 	{
 		test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-		exclude: [IMG_DIR, /node_modules/],
+		exclude: [ IMG_DIR, /node_modules/ ],
 		use: {
 			loader: 'file-loader',
 			options: {
@@ -99,24 +99,23 @@ const rules = [
  *
  * @see https://webpack.js.org/configuration/configuration-types/#exporting-a-function
  */
-
-module.exports = (env, argv) => ({
-
+module.exports = ( env, argv ) => ({
+	
 	entry: entry,
-
+	
 	output: output,
-
+	
 	/**
 	 * A full SourceMap is emitted as a separate file ( e.g.  main.js.map )
 	 * It adds a reference comment to the bundle so development tools know where to find it.
 	 * set this to false if you don't need it
 	 */
 	devtool: 'source-map',
-
+	
 	module: {
 		rules: rules,
 	},
-
+	
 	optimization: {
 		minimizer: [
 			new OptimizeCssAssetsPlugin({
@@ -125,17 +124,17 @@ module.exports = (env, argv) => ({
 					preset: ['default', { discardComments: { removeAll: true } }],
 				},
 			}),
-
-			new UglifyJsPlugin({
+			
+			new UglifyJsPlugin( {
 				cache: false,
 				parallel: true,
 				sourceMap: false
-			})
+			} )
 		]
 	},
-
-	plugins: plugins(argv),
-
+	
+	plugins: plugins( argv ),
+	
 	externals: {
 		jquery: 'jQuery'
 	}

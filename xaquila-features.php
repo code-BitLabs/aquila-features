@@ -13,3 +13,18 @@
  * Text Domain:       xaquila-features
  * Domain Path:       /languages
  */
+
+
+require_once 'vendor/autoload.php';
+
+use AquilaFeatures\Plugin;
+
+if ( class_exists( 'AquilaFeatures\Plugin' ) ) {
+	$the_plugin = new Plugin();
+	
+	
+}
+
+// register_activation_hook( __FILE__, [ $the_plugin, 'activate' ] );
+
+// register_deactivation_hook( __FILE__, [ $the_plugin, 'deactivate' ] );
