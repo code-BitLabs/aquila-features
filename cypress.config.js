@@ -2,8 +2,8 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   env: {
-		wpUser: 'root',
-		wpPassword: 'root',
+		wpUser: 'admin',
+		wpPassword: 'admin',
 	},
   e2e: {
     baseUrl: 'http://localhost/wordpress',
