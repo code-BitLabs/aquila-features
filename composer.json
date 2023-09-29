@@ -1,0 +1,38 @@
+{
+    "name": "tanzim/aquila-feature",
+    "description": "Aquila Features WordPress Plugin",
+    "license": "GPL",
+	"version": "1.0.0",
+	"keywords": [
+		"wordpress",
+		"plugin"
+	],
+	"require": {
+		"php": ">=5.4.0"
+	},
+	"homepage": "https://github.com/code-BitLabs/aquila-features",
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^3.0",
+		"phpcompatibility/phpcompatibility-wp": "^2.1"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	},
+   
+    "authors": [
+        {
+            "name": "Tanzim Hossain",
+            "email": "tanzimhossain2@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "AquilaFeatures\\": "src/"
+        },
+		"classmap": [
+			"includes/"
+		]
+    }
+}
